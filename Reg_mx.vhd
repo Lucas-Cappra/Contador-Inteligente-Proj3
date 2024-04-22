@@ -1,0 +1,32 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Reg_mx is
+    port (mx_mi, load, clr: in  std_logic; --mx_mi> selecionar maximo e minimo, load > carregar valores, clr > limpar 
+	A2,A1,A0 : in std_logic_vector(3 downto 0); -- > valores 
+        Qmx : out std_logic_vector(11 downto 0)-- > valor registrado 
+	); 
+end entity Reg_mx;
+
+architecture log of Reg_mx is
+signal Q : std_logic_vector(11 downto 0) := (others => '0');
+begin
+
+Qmx(11) <= not((not clr) or (not(((Q(11))or(((A2(3)) and ((load)and( mx_mi))))))));
+Qmx(10) <= not((not clr) or (not(((Q(10))or(((A2(2)) and ((load)and( mx_mi))))))));
+Qmx(9) <= not((not clr) or (not(((Q(9))or(((A2(1)) and ((load)and( mx_mi))))))));
+Qmx(8) <= not((not clr) or (not(((Q(8))or(((A2(0)) and ((load)and( mx_mi))))))));
+
+
+Qmx(7) <= not((not clr) or (not(((Q(7))or(((A1(3)) and ((load)and( mx_mi))))))));
+Qmx(6) <= not((not clr) or (not(((Q(6))or(((A1(2)) and ((load)and( mx_mi))))))));
+Qmx(5) <= not((not clr) or (not(((Q(5))or(((A1(1)) and ((load)and( mx_mi))))))));
+Qmx(4) <= not((not clr) or (not(((Q(4))or(((A1(0)) and ((load)and( mx_mi))))))));
+
+
+Qmx(3) <= not((not clr) or (not(((Q(3))or(((A0(3)) and ((load)and( mx_mi))))))));
+Qmx(2) <= not((not clr) or (not(((Q(2))or(((A0(2)) and ((load)and( mx_mi))))))));
+Qmx(1) <= not((not clr) or (not(((Q(1))or(((A0(1)) and ((load)and( mx_mi))))))));
+Qmx(0) <= not((not clr) or (not(((Q(0))or(((A0(0)) and ((load)and( mx_mi))))))));
+
+end architecture log;
